@@ -16,5 +16,8 @@
     "url": "https://github.com/SShivani12/SShivani12.github.io/issues"
   },
   "homepage": "https://github.com/SShivani12/SShivani12.github.io#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
 }
