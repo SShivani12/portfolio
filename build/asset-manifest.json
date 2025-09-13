@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SShivani12/SShivani12.github.io/static/css/main.e6c13ad2.css",
+    "main.js": "/SShivani12/SShivani12.github.io/static/js/main.34bacaef.js",
+    "static/js/584.b24c838e.chunk.js": "/SShivani12/SShivani12.github.io/static/js/584.b24c838e.chunk.js",
+    "index.html": "/SShivani12/SShivani12.github.io/index.html",
+    "main.e6c13ad2.css.map": "/SShivani12/SShivani12.github.io/static/css/main.e6c13ad2.css.map",
+    "main.34bacaef.js.map": "/SShivani12/SShivani12.github.io/static/js/main.34bacaef.js.map",
+    "584.b24c838e.chunk.js.map": "/SShivani12/SShivani12.github.io/static/js/584.b24c838e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.34bacaef.js"
+  ]
+}
