@@ -1,825 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivani Singh - AI/ML Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce': 'bounce 1s infinite',
-                        'fadeInUp': 'fadeInUp 0.5s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': {
-                                opacity: '0',
-                                transform: 'translateY(30px)'
-                            },
-                            '100%': {
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            }
-                        }
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shivani Singh - AI/ML Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            primaryDark: '#4f46e5',
+            accent: '#06b6d4',
+            dark: '#0f172a',
+            darkCard: '#1e293b',
+            darkBorder: '#334155',
+            textPrimary: '#f8fafc',
+            textSecondary: '#cbd5e1',
+            textMuted: '#94a3b8'
+          },
         }
-    </script>
-    <style>
-        /* Tagline visibility fix */
-        .tagline-text {
-        color: #ffffff;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-        font-size: 1.5rem;
-        letter-spacing: 0.5px;
-        }
+      }
+    }
+  </script>
 
-        .typing-cursor {
-            border-right: 2px solid #06b6d4;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: #06b6d4; }
-            51%, 100% { border-color: transparent; }
-        }
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 50%, #7c2d12 100%);
-        }
+    .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); position: relative; }
+    .hero-gradient::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: radial-gradient(circle at 30% 20%, rgba(99,102,241,0.05) 0%, transparent 50%); pointer-events:none; }
 
-        .card-hover {
-            transition: all 0.3s ease;
-        }
+    .btn-primary { background: #6366f1; transition: all 0.2s ease; border: 1px solid transparent; }
+    .btn-primary:hover { background: #4f46e5; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,102,241,0.1); }
+    .btn-secondary { border: 1px solid #334155; background: transparent; transition: all 0.2s ease; }
+    .btn-secondary:hover { background: #1e293b; border-color: #6366f1; }
 
-        .card-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-        }
+    .card { background: #1e293b; border: 1px solid #334155; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-2px); border-color: #6366f1; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .section-title { position: relative; display: inline-block; }
+    .section-title::after { content: ''; position: absolute; bottom: -8px; left:0; width: 60px; height: 3px; background: linear-gradient(90deg,#6366f1,#06b6d4); border-radius:2px; }
 
-        .text-gradient {
-            background: linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .project-visual { background: linear-gradient(135deg,#1e293b 0%,#334155 100%); border-radius:8px; display:flex; align-items:center; justify-content:center; height:180px; position:relative; overflow:hidden; }
+    .skill-tag { background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); color: #cbd5e1; transition: all 0.2s ease; }
+    .skill-tag:hover { background: rgba(99,102,241,0.2); border-color: #6366f1; color:#f8fafc; }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-            transition: all 0.3s ease;
-        }
+    .navbar { backdrop-filter: blur(20px); background: rgba(15,23,42,0.8); border-bottom:1px solid rgba(51,65,85,0.3); }
+    html { scroll-behavior: smooth; }
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #0891b2, #7c3aed);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
-        }
+    /* Animations */
+    .line-anim { stroke-dasharray: 100; stroke-dashoffset: 100; animation: drawLine 1.2s forwards; }
+    .node { transform-origin: center; animation: pulseNode 1.8s infinite ease-in-out; }
 
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+    @keyframes pulseNode { 0%,100%{ transform: scale(1); opacity:0.8; } 50%{ transform: scale(1.2); opacity:1; } }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .shape-1 {
-            top: 10%;
-            left: 10%;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            top: 20%;
-            right: 10%;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            animation-delay: 2s;
-        }
-
-        .shape-3 {
-            bottom: 10%;
-            left: 20%;
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, #ec4899, #f97316);
-            animation-delay: 4s;
-        }
-
-        .scroll-indicator {
-            animation: bounce 2s infinite;
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-    
-/* === Enhanced UI Additions — Soft Sheen and Refined Cursor === */
-
-/* Subtle animated gradient for headings */
-.text-gradient {
-    background: linear-gradient(270deg, #06b6d4, #8b5cf6, #ec4899);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradientText 6s ease infinite;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.35);
-}
-
-.text-shine {
-    position: relative;
-    display: inline-block;
-}
-.text-shine::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -40%;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06), rgba(255,255,255,0.12));
-    transform: skewX(-15deg);
-    animation: shine 3.2s linear infinite;
-    pointer-events: none;
-}
-@keyframes shine {
-    0% { left: -40%; }
-    100% { left: 140%; }
-}
-@keyframes gradientText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Floating shapes update */
-.floating-shape {
-    animation: floatRotateScale 10s ease-in-out infinite;
-    filter: blur(30px);
-    opacity: 0.3;
-}
-@keyframes floatRotateScale {
-    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-    50% { transform: translateY(-25px) rotate(45deg) scale(1.03); }
-}
-
-/* Card hover subtle 3D */
-.card-hover {
-    transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
-    border: 1px solid rgba(255,255,255,0.03);
-}
-.card-hover:hover {
-    transform: translateY(-5px) scale(1.02) rotateY(4deg);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-    border-color: rgba(255,255,255,0.1);
-}
-
-/* Button glow refinement */
-.btn-primary {
-    background: linear-gradient(90deg, rgba(99,102,241,1), rgba(14,165,233,1));
-    box-shadow: 0 6px 20px rgba(14,165,233,0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.btn-primary:hover {
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 12px 35px rgba(14,165,233,0.3);
-}
-
-/* Custom cursor */
-body { cursor: none; }
-#cursor-dot, #cursor-ring {
-    position: fixed;
-    left: 0; top: 0;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: all 0.15s ease;
-}
-#cursor-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-}
-#cursor-ring {
-    width: 36px; height: 36px;
-    border: 2px solid rgba(255,255,255,0.15);
-    border-radius: 50%;
-    background: transparent;
-}
-input, textarea, button, a { cursor: auto; 
-/* === Text Visibility Fixes === */
-
-/* General text improvements */
-body, p, span, li {
-    color: rgba(255, 255, 255, 0.92);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-/* Headings - stronger glow and shadow */
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
-}
-
-/* Section overlay for better contrast in text-heavy areas */
-.glass::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-    pointer-events: none;
-    z-index: 0;
-    border-radius: inherit;
-}
-
-/* Buttons - ensure high visibility */
-.btn-primary {
-    color: #ffffff !important;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-/* Project cards - clearer text */
-.card-hover h3 {
-    color: #ffffff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-.card-hover p {
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-/* General section text visibility */
-.section-text {
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-/* For headings like "About Me", "Featured Projects" */
-.section-heading {
-  color: #ffffff;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
-}
-
-/* For smaller descriptive text like project descriptions */
-.section-description {
-  color: #f5f5f5;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-}
-
-</style>
+  </style>
 </head>
 <body>
-<div id='cursor-dot'></div>
-<div id='cursor-ring'></div>
- class="gradient-bg text-white min-h-screen overflow-x-hidden">
-    <!-- Floating Background Shapes -->
-    <div class="floating-shape shape-1"></div>
-    <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-gradient">
-                    Shivani Singh
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#hero" class="nav-link hover:text-cyan-400">Home</a>
-                    <a href="#about" class="nav-link hover:text-cyan-400">About</a>
-                    <a href="#projects" class="nav-link hover:text-cyan-400">Projects</a>
-                    <a href="#skills" class="nav-link hover:text-cyan-400">Skills</a>
-                    <a href="#contact" class="nav-link hover:text-cyan-400">Contact</a>
-                </div>
+<!-- Navigation -->
+<nav class="navbar fixed top-0 w-full z-50">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-lg font-semibold">Shivani Singh</div>
+      <div class="hidden md:flex space-x-8 text-sm">
+        <a href="#home" class="text-textSecondary hover:text-primary transition-colors">Home</a>
+        <a href="#about" class="text-textSecondary hover:text-primary transition-colors">About</a>
+        <a href="#projects" class="text-textSecondary hover:text-primary transition-colors">Work</a>
+        <a href="#contact" class="text-textSecondary hover:text-primary transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+<!-- Hero Section -->
+<section id="home" class="hero-gradient min-h-screen flex items-center">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl">
+      <div class="mb-6"><span class="text-accent text-sm font-medium tracking-wide uppercase">AI/ML Engineer</span></div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight">
+        Building intelligent <span class="font-semibold text-primary">solutions</span> that matter
+      </h1>
+      <p class="text-xl text-textSecondary max-w-2xl mb-10 font-light leading-relaxed">
+        I transform complex data into actionable insights through machine learning, specializing in NLP and production-ready AI systems.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="https://drive.google.com/file/d/1ByNmODdveHZ7y2LcnFTPHeSiSGqEb1k7/view?usp=drive_link" target="_blank" class="btn-primary px-8 py-3 rounded-lg font-medium text-center">View Resume</a>
+        <a href="#projects" class="btn-secondary px-8 py-3 rounded-lg font-medium text-center text-textSecondary">See My Work</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden mt-4 pb-4 border-t border-white/10 pt-4 hidden">
-                <a href="#hero" class="block py-2 hover:text-cyan-400 transition-colors">Home</a>
-                <a href="#about" class="block py-2 hover:text-cyan-400 transition-colors">About</a>
-                <a href="#projects" class="block py-2 hover:text-cyan-400 transition-colors">Projects</a>
-                <a href="#skills" class="block py-2 hover:text-cyan-400 transition-colors">Skills</a>
-                <a href="#contact" class="block py-2 hover:text-cyan-400 transition-colors">Contact</a>
-            </div>
+<!-- About Section -->
+<section id="about" class="py-24">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-16 section-title">About</h2>
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <p class="text-lg text-textSecondary leading-relaxed">
+            I'm a Machine Learning Engineer with an M.Sc. in Information Technology, passionate about creating AI solutions that bridge the gap between research and real-world applications.
+          </p>
+          <p class="text-textSecondary leading-relaxed">
+            My expertise spans natural language processing, deep learning, and building scalable systems that make AI accessible and impactful. I believe in writing clean, maintainable code and designing systems that stand the test of time.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-4">
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">TensorFlow</span>
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">NLP</span>
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">REST APIs</span>
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">AWS</span>
+            <span class="skill-tag px-3 py-1 rounded-full text-sm">Deep Learning</span>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="mb-8">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 text-gradient animate-pulse">
-                    Shivani Singh
-                </h1>
-                <div class="text-xl md:text-2xl text-gray-300 mb-8 h-16 flex items-center justify-center">
-                    <span id="typingText" class="typing-cursor pr-1 tagline-text"></span>
-                </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-                <a href="https://drive.google.com/file/d/1ByNmODdveHZ7y2LcnFTPHeSiSGqEb1k7/view?usp=drive_link" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    View Resume
-                </a>
-                <button onclick="scrollToSection('projects')" class="border-2 border-cyan-400 hover:bg-cyan-400 hover:text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                    See My Work
-                </button>
-            </div>
-
-            <div class="flex justify-center space-x-6">
-                <a href="https://github.com/SShivani12" target="_blank" class="p-3 border border-white/20 rounded-full glass hover:scale-110 transition-all duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/shivani-singh-ai/" target="_blank" class="p-3 border border-white/20 rounded-full glass hover:scale-110 transition-all duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="mailto:shivanisingh1718@gmail.com" class="p-3 border border-white/20 rounded-full glass hover:scale-110 transition-all duration-300">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                </a>
-            </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="card p-6 rounded-lg text-center">
+            <div class="text-2xl mb-3">🧠</div>
+            <h3 class="font-semibold mb-2">ML Engineering</h3>
+            <p class="text-sm text-textMuted">Production ML systems</p>
+          </div>
+          <div class="card p-6 rounded-lg text-center">
+            <div class="text-2xl mb-3">📊</div>
+            <h3 class="font-semibold mb-2">Data Science</h3>
+            <p class="text-sm text-textMuted">Analytics & insights</p>
+          </div>
+          <div class="card p-6 rounded-lg text-center">
+            <div class="text-2xl mb-3">🤖</div>
+            <h3 class="font-semibold mb-2">NLP</h3>
+            <p class="text-sm text-textMuted">Text classification</p>
+          </div>
+          <div class="card p-6 rounded-lg text-center">
+            <div class="text-2xl mb-3">⚡</div>
+            <h3 class="font-semibold mb-2">API Design</h3>
+            <p class="text-sm text-textMuted">Scalable backends</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+<!-- Projects Section -->
+<section id="projects" class="py-24 bg-darkCard/30">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-16 section-title">Selected Work</h2>
+      <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- Project 1 -->
+        <div class="card p-6 rounded-lg">
+          <div class="project-visual mb-6">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <circle class="node" cx="15" cy="30" r="4" fill="#6366f1"/>
+              <circle class="node" cx="40" cy="15" r="4" fill="#6366f1"/>
+              <circle class="node" cx="40" cy="45" r="4" fill="#6366f1"/>
+              <circle class="node" cx="65" cy="30" r="4" fill="#06b6d4"/>
+              <line class="line-anim" x1="15" y1="30" x2="40" y2="15" stroke="#6366f1" stroke-width="1.5"/>
+              <line class="line-anim" x1="15" y1="30" x2="40" y2="45" stroke="#6366f1" stroke-width="1.5"/>
+              <line class="line-anim" x1="40" y1="15" x2="65" y2="30" stroke="#06b6d4" stroke-width="1.5"/>
+              <line class="line-anim" x1="40" y1="45" x2="65" y2="30" stroke="#06b6d4" stroke-width="1.5"/>
             </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Text Classification API</h3>
+          <p class="text-textSecondary mb-6 leading-relaxed">
+            Production-ready REST API for text classification using transformer models. Optimized for performance and scalability.
+          </p>
+          <a href="https://github.com/SShivani12/Text-Classification-API" target="_blank" class="btn-primary px-4 py-2 rounded text-sm font-medium">View Project</a>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 glass">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-heading">
-                About Me
-            </h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center">
-                    <div class="w-64 h-64 mx-auto bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center text-6xl mb-6">
-                        👩‍💻
-                    </div>
-                </div>
-                <div class="space-y-6">
-                    <p class="text-lg section-text leading-relaxed">
-                        I'm a passionate Machine Learning Engineer with an M.Sc. in Information Technology, 
-                        specializing in NLP and AI-driven solutions. I love transforming complex data into 
-                        actionable insights and building intelligent systems that make a real difference.
-                    </p>
-                    <p class="text-lg section-text leading-relaxed">
-                        With expertise in deep learning, natural language processing, and data analytics, 
-                        I create innovative solutions that bridge the gap between cutting-edge AI research 
-                        and practical business applications.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="glass p-4 rounded-lg card-hover">
-                            <div class="text-cyan-400 mb-2">🧠</div>
-                            <h4 class="font-semibold">ML Specialist</h4>
-                            <p class="text-sm text-gray-400">NLP & Deep Learning</p>
-                        </div>
-                        <div class="glass p-4 rounded-lg card-hover">
-                            <div class="text-purple-400 mb-2">📊</div>
-                            <h4 class="font-semibold">Data Expert</h4>
-                            <p class="text-sm text-gray-400">Big Data & Analytics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Project 2 -->
+        <div class="card p-6 rounded-lg">
+          <div class="project-visual mb-6">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <rect x="10" y="25" width="20" height="10" fill="#6366f1" rx="2"/>
+              <line class="line-anim" x1="30" y1="30" x2="55" y2="20" stroke="#6366f1" stroke-width="4" stroke-linecap="round"/>
+              <circle class="node" cx="55" cy="20" r="6" fill="#06b6d4"/>
+              <circle class="node" cx="55" cy="20" r="3" fill="#0f172a"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Android Robotic Arm</h3>
+          <p class="text-textSecondary mb-6 leading-relaxed">
+            Bluetooth-controlled robotic arm with real-time actuation via custom Android app and wireless command protocol.
+          </p>
+          <a href="https://github.com/SShivani12/Android-Robotic-Arm" target="_blank" class="btn-primary px-4 py-2 rounded text-sm font-medium">View Project</a>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">
-                Featured Projects
-            </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
-                <!-- Projects will be loaded by JavaScript -->
-            </div>
+        <!-- Project 3 -->
+        <div class="card p-6 rounded-lg">
+          <div class="project-visual mb-6">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <path class="line-anim" d="M10,45 Q25,20 40,35 T70,25" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+              <circle class="node" cx="10" cy="45" r="4" fill="#6366f1"/>
+              <circle class="node" cx="70" cy="25" r="4" fill="#06b6d4"/>
+              <rect x="35" y="40" width="8" height="8" fill="#334155" rx="1"/>
+              <rect x="50" y="15" width="8" height="8" fill="#334155" rx="1"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Robot Path Planning</h3>
+          <p class="text-textSecondary mb-6 leading-relaxed">
+            Autonomous robot simulation with advanced path planning algorithms and real-time obstacle avoidance capabilities.
+          </p>
+          <a href="https://github.com/SShivani12/Mobile-Robot-Simulation" target="_blank" class="btn-primary px-4 py-2 rounded text-sm font-medium">View Project</a>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 glass">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">
-                Technical Skills
-            </h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="skillsGrid">
-                <!-- Skills will be loaded by JavaScript -->
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">
-                Let's Connect
-            </h2>
-            <div class="max-w-2xl mx-auto">
-                <div class="glass rounded-2xl p-8">
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Name</label>
-                            <input type="text" id="contactName" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors text-white placeholder-gray-400" placeholder="Your Name">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Email</label>
-                            <input type="email" id="contactEmail" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors text-white placeholder-gray-400" placeholder="your.email@example.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Message</label>
-                            <textarea rows="5" id="contactMessage" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors text-white placeholder-gray-400 resize-none" placeholder="Your message..."></textarea>
-                        </div>
-                        <button onclick="handleContactSubmit()" class="w-full btn-primary py-4 rounded-lg font-semibold text-lg">
-                            Send Message
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Contact Section -->
+<section id="contact" class="py-24">
+  <div class="container mx-auto px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-8 section-title">Let's Connect</h2>
+      <p class="text-xl text-textSecondary mb-12 leading-relaxed">
+        Interested in collaborating or discussing AI/ML opportunities? I'd love to hear from you.
+      </p>
+      <div class="card p-8 rounded-lg">
+        <form class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <input type="text" placeholder="Your Name" class="w-full p-4 bg-dark border border-darkBorder rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors">
+            <input type="email" placeholder="Your Email" class="w-full p-4 bg-dark border border-darkBorder rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors">
+          </div>
+          <textarea placeholder="Your Message" rows="5" class="w-full p-4 bg-dark border border-darkBorder rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors resize-none"></textarea>
+          <button type="submit" class="btn-primary w-full py-4 rounded-lg font-medium">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="py-8 glass border-t border-white/10">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-400">
-                © 2025 Shivani Singh. Built with modern web technologies.
-            </p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://github.com/SShivani12" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/shivani-singh-ai/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="mailto:shivanisingh1718@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </footer>
+<!-- Footer -->
+<footer class="py-12 border-t border-darkBorder">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <p class="text-textMuted text-sm mb-4 md:mb-0">© 2025 Shivani Singh. Crafted with precision and care.</p>
+      <div class="flex space-x-6">
+        <a href="https://github.com/SShivani12" target="_blank" class="text-textMuted hover:text-primary transition-colors">GitHub</a>
+        <a href="https://linkedin.com/in/shivani-singh" target="_blank" class="text-textMuted hover:text-primary transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <script>
-        // Typing animation
-        const typingText = document.getElementById('typingText');
-        const fullText = "AI/ML Engineer | Building intelligent solutions for tomorrow";
-        let i = 0;
-        
-        function typeText() {
-            if (i < fullText.length) {
-                typingText.textContent += fullText.charAt(i);
-                i++;
-                setTimeout(typeText, 50);
-            }
-        }
-        
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-            mobileMenu.classList.add('hidden');
-        }
-        
-        // Add click listeners to navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-        
-        // Projects data
-        const projects = [
-            {
-                title: "Smart Resume Screener",
-                description: "AI-powered resume screening system using BERT and NLP to match candidates with job requirements. Increased hiring efficiency by 70%.",
-                tech: ["Python", "BERT", "Flask", "React", "PostgreSQL"],
-                github: "https://github.com/SShivani12/HireSeinse",
-                demo: "https://github.com/SShivani12/HireSeinse/blob/main/frontend/app.py",
-                emoji: "🤖"
-            },
-            {
-                title: "Text Classification API",
-                description: "RESTful API for multi-class text classification using transformer models. Handles 10k+ requests daily with 95% accuracy.",
-                tech: ["Python", "FastAPI", "Transformers", "Docker", "AWS"],
-                github: "https://github.com/SShivani12/rgpt3",
-                demo: "hhttps://github.com/SShivani12/rgpt3/blob/main/R/authenticate.R",
-                emoji: "📊"
-            },
-            {
-                title: "Android Robotic Arm",
-                description: "This project is a Flask-based Python API that allows control of a robotic arm through HTTP commands sent from an Android app. It enables seamless automation and remote manipulation of the arm using simple RESTful endpoints.",
-                tech: ["Python", "Flask", "Android", "Bluetooth", "Servo Motors", "Arduino"],
-                github: "https://github.com/SShivani12/android_robotic_arm",
-                demo: "https://github.com/SShivani12/android_robotic_arm/blob/main/main.py",
-                emoji: "🤖"
-            },
-            ];
-        
-        // Skills data
-        const skills = {
-            "Programming": {
-                icon: "💻",
-                color: "cyan",
-                skills: ["Python", "Java", "JavaScript", "C++", "SQL", "R"]
-            },
-            "ML/AI": {
-                icon: "🧠",
-                color: "purple",
-                skills: ["TensorFlow", "PyTorch", "Scikit-learn", "BERT", "GPT", "OpenCV", "Keras", "Transformers"]
-            },
-            "Data Science": {
-                icon: "📊",
-                color: "green",
-                skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter", "Apache Spark"]
-            },
-            "Cloud & DevOps": {
-                icon: "☁️",
-                color: "orange",
-                skills: ["AWS", "Docker", "Kubernetes", "Git", "Linux", "Jenkins", "MLflow"]
-            }
-        };
-        
-        // Load projects
-        function loadProjects() {
-            const projectsGrid = document.getElementById('projectsGrid');
-            projectsGrid.innerHTML = projects.map(project => `
-                <div class="glass rounded-2xl p-6 card-hover">
-                    <div class="text-6xl mb-4">${project.emoji}</div>
-                    <h3 class="text-xl font-bold mb-3 text-cyan-400">${project.title}</h3>
-                    <p class="section-description mb-4 text-sm leading-relaxed">${project.description}</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        ${project.tech.map(tech => `
-                            <span class="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 rounded-full text-xs font-medium">
-                                ${tech}
-                            </span>
-                        `).join('')}
-                    </div>
-                    <div class="flex gap-3">
-                        <a href="${project.github}" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            Code
-                        </a>
-                        <a href="${project.demo}" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-colors text-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                            View
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Load skills
-        function loadSkills() {
-            const skillsGrid = document.getElementById('skillsGrid');
-            skillsGrid.innerHTML = Object.entries(skills).map(([category, data]) => `
-                <div class="glass rounded-2xl p-6 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="text-2xl mr-3">${data.icon}</div>
-                        <h3 class="text-lg font-bold">${category}</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        ${data.skills.map(skill => `
-                            <span class="px-3 py-1 bg-gradient-to-r from-white/10 to-white/5 border border-white/20 rounded-full text-sm hover:border-cyan-400/50 transition-colors">
-                                ${skill}
-                            </span>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Contact form handler
-        function handleContactSubmit() {
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const message = document.getElementById('contactMessage').value;
-            
-            if (name && email && message) {
-                // Create mailto link with pre-filled content
-                const subject = encodeURIComponent(`Portfolio Contact: Message from ${name}`);
-                const body = encodeURIComponent(`Hello Shivani,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`);
-                const mailtoLink = `mailto:shivanisingh.ai@gmail.com?subject=${subject}&body=${body}`;
-                
-                // Open default email client
-                window.location.href = mailtoLink;
-                
-                // Show success message
-                alert('Thank you for your message! Your default email client should open with a pre-filled message. If not, please send an email to shivanisingh.ai@gmail.com');
-                
-                // Reset form
-                document.getElementById('contactName').value = '';
-                document.getElementById('contactEmail').value = '';
-                document.getElementById('contactMessage').value = '';
-            } else {
-                alert('Please fill in all fields.');
-            }
-        }
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeInUp');
-                }
-            });
-        }, observerOptions);
-        
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            typeText();
-            loadProjects();
-            loadSkills();
-            
-            // Observe sections for animations
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Add scroll effect to navbar
-            window.addEventListener('scroll', () => {
-                const navbar = document.querySelector('nav');
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(0, 0, 0, 0.8)';
-                } else {
-                    navbar.style.background = 'rgba(0, 0, 0, 0.2)';
-                }
-            });
-        });
-        
-        // Parallax effect for floating shapes
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.floating-shape');
-            
-            shapes.forEach((shape, index) => {
-                const rate = scrolled * -0.5 * (index + 1);
-                shape.style.transform = `translateY(${rate}px)`;
-            });
-        });
-        
-        // Add particle effect cursor
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.95) { // Reduce particle frequency
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.cssText = `
-                    position: fixed;
-                    width: 4px;
-                    height: 4px;
-                    background: linear-gradient(45deg, #06b6d4, #8b5cf6);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    left: ${e.clientX - 2}px;
-                    top: ${e.clientY - 2}px;
-                    animation: particle-fade 1s ease-out forwards;
-                `;
-                
-                document.body.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                }, 1000);
-            }
-        });
-        
-        // Add particle fade animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes particle-fade {
-                0% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    
-// === Custom cursor behavior ===
-(function(){
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorRing = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
-    });
-
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top = ringY + 'px';
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    const hoverElements = document.querySelectorAll('a, button, .card-hover');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorRing.style.transform = 'translate(-50%, -50%) scale(1.3)';
-            cursorRing.style.borderColor = 'rgba(14,165,233,0.4)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorRing.style.borderColor = 'rgba(255,255,255,0.15)';
-        });
-    });
-})();
-
-</script>
 </body>
 </html>
