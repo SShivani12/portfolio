@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+@app.route("/healthz")
+def health_check():
+    return "OK", 200
+
 CORS(app)
 
 # Email configuration

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
       };
 
       try {
-        const response = await fetch("http://127.0.0.1:5000/send-message", {
+        const response = await fetch("https://portfolio-yfbq.onrender.com/send-message", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
